@@ -2,11 +2,11 @@
 
 This Python script automates the process of updating a target branch with changes from a source branch across multiple repositories in a GitHub organization. The script performs the following actions for each repository in the specified list:
 
-1. Create a new branch: The script creates a new branch called source_clone_MMDDmm based on the source branch. The new branch name includes the source branch name, the current month, day, and minute. This branch will be used to create a pull request to merge changes from the source branch into the target branch.
+1. **Create a new branch**: The script creates a new branch called source_clone_MMDDmm based on the source branch. The new branch name includes the source branch name, the current month, day, and minute. This branch will be used to create a pull request to merge changes from the source branch into the target branch.
 
-2. Create a pull request: The script then creates a pull request with the title "Refresh <target_branch_name> with <source_branch_name>", where <target_branch_name> is the target branch you want to update, and <source_branch_name> is the branch containing the changes to be merged. The pull request is created from the source_clone_MMDDmm branch to the target branch.
+2. **Create a pull request**: The script then creates a pull request with the title "Refresh <target_branch_name> with <source_branch_name>", where <target_branch_name> is the target branch you want to update, and <source_branch_name> is the branch containing the changes to be merged. The pull request is created from the source_clone_MMDDmm branch to the target branch.
 
-3. Output the results: For each repository, the script outputs the repository name along with either the pull request link or the message "no refresh needed" if there are no changes to merge between the source and target branches.
+3. **Output the result**s: For each repository, the script outputs the repository name along with either the pull request link or the message "no refresh needed" if there are no changes to merge between the source and target branches.
 
 To use this script, you need to provide a GitHub access token with the necessary permissions, your GitHub organization name, a list of repository names to process, and the names of the source and target branches.
 
