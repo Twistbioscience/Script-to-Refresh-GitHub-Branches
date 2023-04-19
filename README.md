@@ -66,18 +66,15 @@ TARGET_BRANCH = 'target_branch_name_here'
 
 ```
 pip install requests
-
 ```
 
 3. Run the script 
 ```
 python refresh_branches.py
-
 ```
 or 
 ```
 python3 refresh_branches.py
-
 ```
 
 The script will create branches and pull requests for each repository in the REPO_NAMES list. The output will include the repository name along with the pull request link or "no refresh needed" status.
@@ -87,7 +84,6 @@ The script will create branches and pull requests for each repository in the REP
 repo_name_1: https://github.com/your_organization_name_here/repo_name_1/pull/123
 repo_name_2: no refresh needed
 repo_name_3: https://github.com/your_organization_name_here/repo_name_3/pull/124
-
 ```
 
 In this example, the script created a pull request for repo_name_1 and repo_name_3 and provided their links. For repo_name_2, there were no changes to merge, so the output shows "no refresh needed."
