@@ -1,4 +1,4 @@
-# GitHub Branch Refresh Script
+# Script to Refresh GitHub Branches
 
 This Python script automates the process of updating a target branch with changes from a source branch across multiple repositories in a GitHub organization. The script performs the following actions for each repository in the specified list:
 
