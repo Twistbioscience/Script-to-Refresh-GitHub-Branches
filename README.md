@@ -13,7 +13,8 @@ Before using the script, you need to generate a GitHub access token and add it t
 3. Enter a descriptive name for the token in the "Note" field.
 4. Under the "Select scopes" section, check the `repo` box to grant full control of private repositories.
 5. Click "Generate token" at the bottom of the page.
-6. Copy the generated token.
+6. You will need to authorize your PAT with the Twist SSO
+7. Copy the generated token.
 
 ### Adding the Access Token to the Script
 
