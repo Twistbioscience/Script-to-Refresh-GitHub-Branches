@@ -43,7 +43,7 @@ def create_pull_request(repo, title, source_branch, target_branch):
     else:
         response.raise_for_status()
 
-def process_repo(repo_name):
+def process_repo(repo_name, dry_run=True):
     try:
         today = datetime.today()
         source_clone_name = f'{SOURCE_BRANCH}_clone_{today.month:02d}{today.day:02d}{today.minute:02d}'
@@ -53,7 +53,10 @@ def process_repo(repo_name):
         pull_request = create_pull_request(repo_name, pr_title, source_clone_name, TARGET_BRANCH)
 
         if pull_request:
-            return repo_name, pull_request['html_url']
+            if dry_run:
+                return repo_name, pull_request['html_url'], pull_request['diff_url']
+            else:
+                return repo_name, pull_request['html_url']
         else:
             return repo_name, "No refresh needed"
     except requests.exceptions.RequestException as e:
@@ -61,14 +64,33 @@ def process_repo(repo_name):
         return repo_name, "error"
 
 def main():
+    dry_run = True
     results = []
 
     for repo_name in REPO_NAMES:
-        result = process_repo(repo_name)
+        result = process_repo(repo_name, dry_run)
         results.append(result)
 
-    for repo_name, status in results:
-        print(f'{repo_name}: {status}')
+    for repo_result in results:
+        if len(repo_result) == 3:
+            repo_name, pr_url, diff_url = repo_result
+            print(f'{repo_name}: Diff URL - {diff_url}')
+        else:
+            repo_name, status = repo_result
+            print(f'{repo_name}: {status}')
+
+    if dry_run:
+        confirm = input("Do you want to create the pull requests? (y/n): ")
+        if confirm.lower() == "y":
+            dry_run = False
+            confirmed_results = []
+
+            for repo_name in REPO_NAMES:
+                result = process_repo(repo_name, dry_run)
+                confirmed_results.append(result)
+
+            for repo_name, status in confirmed_results:
+                print(f'{repo_name}: {status}')
 
 if __name__ == '__main__':
     main()
